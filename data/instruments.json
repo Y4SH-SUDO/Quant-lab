@@ -1,0 +1,23 @@
+[
+  {
+    "symbol": "RELIANCE",
+    "name": "Reliance Industries",
+    "exchange": "NSE",
+    "currency": "INR",
+    "active": true
+  },
+  {
+    "symbol": "TCS",
+    "name": "Tata Consultancy Services",
+    "exchange": "NSE",
+    "currency": "INR",
+    "active": true
+  },
+  {
+    "symbol": "INFY",
+    "name": "Infosys",
+    "exchange": "NSE",
+    "currency": "INR",
+    "active": true
+  }
+]

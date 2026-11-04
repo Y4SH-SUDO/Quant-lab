@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quant-lab"
+version = "0.1.0"
+description = "A modular quantitative research and paper-trading foundation for Indian equity markets."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy==2.2.6",
+    "pandas==2.2.3",
+    "scipy==1.15.3",
+    "polars==1.30.0",
+    "statsmodels==0.14.4",
+    "scikit-learn==1.6.1",
+    "arch==7.2.0",
+    "yfinance==0.2.59",
+    "pyarrow==19.0.1",
+    "fastapi==0.115.12",
+    "uvicorn==0.34.2",
+    "pydantic==2.11.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==8.3.5",
+    "pytest-cov==6.1.1",
+    "ruff==0.11.8",
+    "mypy==1.15.0",
+    "jupyterlab==4.3.6",
+]
+
+[tool.setuptools.packages.find]
+include = ["quantlab*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers --strict-config"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+extend-exclude = [".venv", "data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.12"
+files = ["quantlab", "backend"]
+check_untyped_defs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+exclude = ["tests"]
+
+[[tool.mypy.overrides]]
+module = ["pandas"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["yfinance"]
+ignore_missing_imports = true

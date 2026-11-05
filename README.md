@@ -24,6 +24,13 @@ Provider calls are network-dependent; tests use synthetic bars and never access
 the network. Data availability and corporate-action correctness must be
 independently reviewed before research use.
 
+## Quantitative analytics (M2)
+
+M2 provides pure, reproducible analytics over M1 price/return series. See
+[`docs/M2_QUANTITATIVE_ANALYTICS.md`](docs/M2_QUANTITATIVE_ANALYTICS.md) for
+the modules, examples, assumptions, and limitations. Analytics never fetch
+data or execute trades.
+
 ## Technology stack
 
 Python 3.12, NumPy, pandas, SciPy, Polars, statsmodels, scikit-learn, arch,

@@ -13,7 +13,7 @@ class YFinanceDailyProvider(DailyHistoryProvider):
 
     def fetch_daily(self, symbol: str, start: date, end: date) -> pd.DataFrame:
         ticker = symbol.strip().upper()
-        if not ticker.endswith(".NS"):
+        if not ticker.endswith(".NS") and not ticker.startswith("^"):
             ticker += ".NS"
         data = yf.download(
             ticker,

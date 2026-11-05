@@ -1,0 +1,267 @@
+{
+  "design": {
+    "source": "saved M2.9 Parquet; no refetch",
+    "instruments": [
+      "RELIANCE",
+      "TCS",
+      "INFY",
+      "NIFTY50"
+    ],
+    "train_fraction": 0.8,
+    "annualization": "none; variance and volatility metrics are per session"
+  },
+  "results": {
+    "RELIANCE": {
+      "n_observations": 2678,
+      "n_train": 2142,
+      "n_test": 536,
+      "train_start": "2016-01-04",
+      "train_end": "2024-09-06",
+      "test_start": "2024-09-09",
+      "test_end": "2026-11-05",
+      "target": "one-session simple return from Yahoo Adj Close; decimal units",
+      "split": "chronological 80/20; fit at train end; fixed-origin multi-step test forecasts",
+      "arima": {
+        "order": [
+          1,
+          0,
+          1
+        ],
+        "converged": true,
+        "benchmarks": {
+          "zero": {
+            "mae": 0.010081913833739051,
+            "rmse": 0.014067213635680004
+          },
+          "training_mean": {
+            "mae": 0.010130887287115411,
+            "rmse": 0.01411208252069033
+          }
+        },
+        "model": {
+          "mae": 0.010131590005569003,
+          "rmse": 0.014112391769024249,
+          "directional_accuracy": 0.4925373134328358
+        },
+        "residual_diagnostics": {
+          "ljung_box_lag": 10,
+          "residual_autocorrelation_p": 0.9569275451333757
+        }
+      },
+      "garch": {
+        "specification": "GARCH(1,1), constant mean, normal innovations",
+        "target_proxy": "squared one-session return; noisy proxy for latent variance",
+        "variance_units": "decimal return squared per session; no annualization",
+        "benchmarks": {
+          "training_historical_variance": {
+            "rmse_squared_return": 0.0006585197423986556,
+            "qlike": -7.439414059774869
+          }
+        },
+        "model": {
+          "rmse_squared_return": 0.0006542082107419611,
+          "qlike": -7.4724287687642414
+        },
+        "standardized_error_diagnostics": {
+          "squared_standardized_error_autocorrelation_p": 0.9964316658643241
+        }
+      },
+      "limitations": [
+        "single holdout and fixed-origin forecasts; no rolling refit",
+        "squared returns are a noisy variance proxy",
+        "no significance tests or parameter uncertainty",
+        "adjusted data completeness is unaudited",
+        "results do not establish trading value"
+      ]
+    },
+    "TCS": {
+      "n_observations": 2678,
+      "n_train": 2142,
+      "n_test": 536,
+      "train_start": "2016-01-04",
+      "train_end": "2024-09-06",
+      "test_start": "2024-09-09",
+      "test_end": "2026-11-05",
+      "target": "one-session simple return from Yahoo Adj Close; decimal units",
+      "split": "chronological 80/20; fit at train end; fixed-origin multi-step test forecasts",
+      "arima": {
+        "order": [
+          1,
+          0,
+          1
+        ],
+        "converged": true,
+        "benchmarks": {
+          "zero": {
+            "mae": 0.011139098106880232,
+            "rmse": 0.015987332489537664
+          },
+          "training_mean": {
+            "mae": 0.01125487059097685,
+            "rmse": 0.016048466498174863
+          }
+        },
+        "model": {
+          "mae": 0.011252879312965463,
+          "rmse": 0.01604651826198372,
+          "directional_accuracy": 0.44402985074626866
+        },
+        "residual_diagnostics": {
+          "ljung_box_lag": 10,
+          "residual_autocorrelation_p": 0.7110190084665328
+        }
+      },
+      "garch": {
+        "specification": "GARCH(1,1), constant mean, normal innovations",
+        "target_proxy": "squared one-session return; noisy proxy for latent variance",
+        "variance_units": "decimal return squared per session; no annualization",
+        "benchmarks": {
+          "training_historical_variance": {
+            "rmse_squared_return": 0.0006127016531576637,
+            "qlike": -7.265185116540833
+          }
+        },
+        "model": {
+          "rmse_squared_return": 0.000612835251598748,
+          "qlike": -7.26441059613508
+        },
+        "standardized_error_diagnostics": {
+          "squared_standardized_error_autocorrelation_p": 0.20326212367148075
+        }
+      },
+      "limitations": [
+        "single holdout and fixed-origin forecasts; no rolling refit",
+        "squared returns are a noisy variance proxy",
+        "no significance tests or parameter uncertainty",
+        "adjusted data completeness is unaudited",
+        "results do not establish trading value"
+      ]
+    },
+    "INFY": {
+      "n_observations": 2678,
+      "n_train": 2142,
+      "n_test": 536,
+      "train_start": "2016-01-04",
+      "train_end": "2024-09-06",
+      "test_start": "2024-09-09",
+      "test_end": "2026-11-05",
+      "target": "one-session simple return from Yahoo Adj Close; decimal units",
+      "split": "chronological 80/20; fit at train end; fixed-origin multi-step test forecasts",
+      "arima": {
+        "order": [
+          1,
+          0,
+          1
+        ],
+        "converged": true,
+        "benchmarks": {
+          "zero": {
+            "mae": 0.012774483595944729,
+            "rmse": 0.01783792242647774
+          },
+          "training_mean": {
+            "mae": 0.012844165672837169,
+            "rmse": 0.017884423318529172
+          }
+        },
+        "model": {
+          "mae": 0.01284429959309111,
+          "rmse": 0.017884453295418407,
+          "directional_accuracy": 0.47574626865671643
+        },
+        "residual_diagnostics": {
+          "ljung_box_lag": 10,
+          "residual_autocorrelation_p": 0.4183951283685159
+        }
+      },
+      "garch": {
+        "specification": "GARCH(1,1), constant mean, normal innovations",
+        "target_proxy": "squared one-session return; noisy proxy for latent variance",
+        "variance_units": "decimal return squared per session; no annualization",
+        "benchmarks": {
+          "training_historical_variance": {
+            "rmse_squared_return": 0.0006623699799571863,
+            "qlike": -7.044476156113874
+          }
+        },
+        "model": {
+          "rmse_squared_return": 0.0006620724175245272,
+          "qlike": -7.047303815841444
+        },
+        "standardized_error_diagnostics": {
+          "squared_standardized_error_autocorrelation_p": 0.6221195044767623
+        }
+      },
+      "limitations": [
+        "single holdout and fixed-origin forecasts; no rolling refit",
+        "squared returns are a noisy variance proxy",
+        "no significance tests or parameter uncertainty",
+        "adjusted data completeness is unaudited",
+        "results do not establish trading value"
+      ]
+    },
+    "NIFTY50": {
+      "n_observations": 2671,
+      "n_train": 2136,
+      "n_test": 535,
+      "train_start": "2016-01-05",
+      "train_end": "2024-09-06",
+      "test_start": "2024-09-09",
+      "test_end": "2026-11-05",
+      "target": "one-session simple return from Yahoo Adj Close; decimal units",
+      "split": "chronological 80/20; fit at train end; fixed-origin multi-step test forecasts",
+      "arima": {
+        "order": [
+          1,
+          0,
+          1
+        ],
+        "converged": true,
+        "benchmarks": {
+          "zero": {
+            "mae": 0.006226720382791691,
+            "rmse": 0.00838202088843419
+          },
+          "training_mean": {
+            "mae": 0.006262541374851505,
+            "rmse": 0.008402631554224048
+          }
+        },
+        "model": {
+          "mae": 0.0062619724122275205,
+          "rmse": 0.00840253093708784,
+          "directional_accuracy": 0.48785046728971965
+        },
+        "residual_diagnostics": {
+          "ljung_box_lag": 10,
+          "residual_autocorrelation_p": 0.4951325091753551
+        }
+      },
+      "garch": {
+        "specification": "GARCH(1,1), constant mean, normal innovations",
+        "target_proxy": "squared one-session return; noisy proxy for latent variance",
+        "variance_units": "decimal return squared per session; no annualization",
+        "benchmarks": {
+          "training_historical_variance": {
+            "rmse_squared_return": 0.00014839189854779321,
+            "qlike": -8.47089673399635
+          }
+        },
+        "model": {
+          "rmse_squared_return": 0.00014476099034401908,
+          "qlike": -8.521298775926464
+        },
+        "standardized_error_diagnostics": {
+          "squared_standardized_error_autocorrelation_p": 1.4821613175472394e-12
+        }
+      },
+      "limitations": [
+        "single holdout and fixed-origin forecasts; no rolling refit",
+        "squared returns are a noisy variance proxy",
+        "no significance tests or parameter uncertainty",
+        "adjusted data completeness is unaudited",
+        "results do not establish trading value"
+      ]
+    }
+  }
+}

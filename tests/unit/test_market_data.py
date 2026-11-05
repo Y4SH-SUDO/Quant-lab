@@ -6,6 +6,7 @@ import pandas as pd
 import pytest
 
 from quantlab.data.catalogue import Instrument, InstrumentCatalogue
+from quantlab.data.cleaning import price_series
 from quantlab.data.cleaning.ohlcv import normalize_ohlcv
 from quantlab.data.pipeline import DailyDataPipeline
 from quantlab.data.providers.base import DailyHistoryProvider
@@ -110,3 +111,27 @@ def test_yfinance_provider_maps_nse_symbol_and_adjustment(monkeypatch) -> None:
     assert captured["kwargs"]["auto_adjust"] is False
     assert captured["kwargs"]["actions"] is False
     assert captured["kwargs"]["multi_level_index"] is False
+
+
+def test_yfinance_provider_preserves_yahoo_index_symbol(monkeypatch) -> None:
+    captured: dict[str, object] = {}
+
+    def fake_download(*args: object, **kwargs: object) -> pd.DataFrame:
+        captured["args"] = args
+        return daily_bars()
+
+    monkeypatch.setattr(
+        "quantlab.data.providers.yfinance_provider.yf.download", fake_download
+    )
+    YFinanceDailyProvider().fetch_daily(
+        "^NSEI", date(2024, 1, 1), date(2024, 2, 1)
+    )
+    assert captured["args"] == ("^NSEI",)
+
+
+def test_adjusted_price_selection_preserves_unadjusted_ohlcv() -> None:
+    bars = daily_bars()
+    bars.loc[bars.index[1], "Adj Close"] = 50.0
+    assert price_series(bars).iloc[1] == 102.0
+    assert price_series(bars, adjusted=True).iloc[1] == 50.0
+    assert bars.loc[bars.index[1], "Close"] == 102.0

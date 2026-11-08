@@ -31,6 +31,14 @@ M2 provides pure, reproducible analytics over M1 price/return series. See
 the modules, examples, assumptions, and limitations. Analytics never fetch
 data or execute trades.
 
+## Trading strategies (M3)
+
+M3 provides a reusable strategy interface, long-only SMA crossover, momentum,
+mean-reversion, and weighted composite signal generators. See
+[`docs/M3_TRADING_STRATEGIES.md`](docs/M3_TRADING_STRATEGIES.md) for formulas,
+validation rules, warm-up behavior, and limitations. Signals describe target
+positions; they are not trade execution or evidence of profitability.
+
 ## Technology stack
 
 Python 3.12, NumPy, pandas, SciPy, Polars, statsmodels, scikit-learn, arch,
